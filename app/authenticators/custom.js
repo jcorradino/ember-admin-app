@@ -3,7 +3,7 @@ import Base from 'ember-simple-auth/authenticators/base';
 export default Base.extend({
     tokenEndpoint: '/',
     restore: function(data) {
-        return new Ember.RSVP.Promise(function(resolve, reject) {
+        return new Ember.RSVP.Promise(function(resolve) {//, reject) {
             // if (!Ember.isEmpty(data.token)) {
                 resolve(data);
             // } else {
@@ -23,8 +23,7 @@ export default Base.extend({
                 // }),
                 // contentType: 'application/json;charset=utf-8',
                 // dataType: 'json'
-            }).then(function(response) {
-            	console.log(true)
+            }).then(function() {//response) {
                 Ember.run(function() {
                     resolve({
                         token: "abcdefg1234567",
@@ -32,8 +31,7 @@ export default Base.extend({
                         permissionLevel: options.role
                     });
                 });
-            }, function(xhr, status, error) {
-            	console.log(false);
+            }, function() {
                 Ember.run(function() {
                     reject();
                 });
@@ -42,7 +40,6 @@ export default Base.extend({
     },
 
     invalidate: function() {
-        console.log('invalidate...');
         return Ember.RSVP.resolve();
     }
 });

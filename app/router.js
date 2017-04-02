@@ -7,6 +7,18 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+	this.route('posts', function() {
+		this.route('new');
+	});
+	this.route('media', function() {
+		this.route('new');
+	});
+	this.route('user', function() {
+		this.route('new');
+	});
+	this.route('taxonomy');
+	this.route('collections');
+	this.route('login');
 });
 
 export default Router;

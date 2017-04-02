@@ -1,5 +1,4 @@
 /* eslint-env node */
-
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'admin-app',
@@ -23,7 +22,19 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
+  ENV['ember-simple-auth'] = {
+    baseURL: 'login'
+  };
+
+  ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:custom',
+    crossOriginWhitelist: ['http://localhost:4200/'],
+    routeAfterAuthentication: '/index'
+  };
+
+  if (environment === 'development' || environment === 'demo') {
+    ENV.testing = true;
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

@@ -1,0 +1,51 @@
+@import "ember-bootstrap/bootstrap";
+
+.testing {
+	border: 2px solid #f26e5d;
+	background-color: #fcf8e3;
+	padding: 30px;
+	margin-top: 20px;
+	position: relative;
+}
+.testing:before {
+	content: "TESTING OPTIONS";
+	position: absolute;
+	top: -25px;
+	left: -2px;
+	background-color: #f26e5d;
+	border: 2px solid #f26e5d;
+	width: ~"calc(100% + 4px)";
+	padding: 5px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.margin-top {
+	margin-top: 50px;	
+}
+
+nav {
+	.logo {
+		width: 40px;
+		height: 40px;
+		margin-top: -10px;
+		margin-right: 5px;
+		float: left;
+		opacity: .4;
+	}
+	.divider {
+		border-bottom: 1px solid #ccc;
+		height: 0px;
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	nav {
+		.divider {
+			height: 30px;
+			border-bottom: none;
+			border-right: 1px solid #ccc;
+			margin-top: 10px;
+		}
+	}
+}

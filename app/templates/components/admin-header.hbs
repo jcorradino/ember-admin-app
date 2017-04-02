@@ -1,0 +1,32 @@
+{{#bs-navbar as |navbar|}}
+
+  <div class="navbar-header">
+    {{navbar.toggle}}
+    {{#link-to "index" class="navbar-brand"}}<img class="logo" aria-role="presentation" src="/images/logo.png" /> Admin Panel{{/link-to}}
+  </div>
+
+  {{#if navigation.left}}
+    {{#navbar.content class="navbar-nav"}}
+      {{#navbar.nav as |nav|}}
+        {{#each navigation.left as |navItem|}}
+          {{#if (gt userPermissionLevel navItem.permission)}}
+            {{partial "partials/nav-item"}}
+          {{/if}}
+        {{/each}}
+      {{/navbar.nav}}
+    {{/navbar.content}}
+  {{/if}}
+
+  {{#if navigation.right}}
+    {{#navbar.content class="navbar-nav navbar-right"}}
+        {{#navbar.nav as |nav|}}
+          {{#each navigation.right as |navItem|}}
+            {{#if (gt userPermissionLevel navItem.permission)}}
+              {{partial "partials/nav-item"}}
+            {{/if}}
+          {{/each}}
+        {{/navbar.nav}}
+    {{/navbar.content}}
+  {{/if}}
+  
+{{/bs-navbar}} 

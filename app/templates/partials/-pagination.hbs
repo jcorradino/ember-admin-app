@@ -1,0 +1,41 @@
+<nav aria-label="Page navigation">
+	<ul class="pagination">
+		{{#if (eq model.page 1)}}
+			<li class="disabled">
+				<span>
+					<span aria-hidden="true">&laquo;</span>
+				</span>
+			</li>
+		{{else}}
+			<li>
+				<a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+		{{/if}}
+		{{#each (range 1 model.pageCount) as |item|}}
+			{{#if (eq item model.page)}}
+				<li class="active">
+					<span>{{item}} <span class="sr-only">(current)</span></span>
+				</li>
+			{{else}}
+				<li><a href="#">{{item}}</a></li>
+			{{/if}}
+		{{/each}}
+		{{#if (eq model.page model.pageCount)}}
+			<li class="disabled">
+				<span>
+					<span aria-hidden="true">&raquo;</span>
+				</span>
+			</li>
+		{{else}}
+			<li>
+				<a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		{{/if}}
+	</ul>
+</nav>
+
+

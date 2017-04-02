@@ -1,0 +1,20 @@
+<td>
+	<input type="checkbox" value="{{post.id}}" aria-labelledby="label-{{post.id}}">
+</td>
+<td>
+	<p id="label-{{post.id}}">{{post.title}}</p>
+</td>
+<td>{{post.author.user-name}}</td>
+<td>{{post.status}}</td>
+<td>
+	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			Actions <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+		  <li><a href="#">Update Status</a></li>
+		  <li><a href="#">Modify Taxonomy</a></li>
+		  <li><a href="#">Delete</a></li>
+		</ul>
+	</div>
+</td>

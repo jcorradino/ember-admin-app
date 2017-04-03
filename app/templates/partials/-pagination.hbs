@@ -1,6 +1,6 @@
-<nav aria-label="Page navigation">
-	<ul class="pagination">
-		{{#if (eq model.page 1)}}
+<nav aria-label="Pagination Links" class="pull-left">
+	<ul class="pagination no-spacing">
+		{{#if model.isFirstPage}}
 			<li class="disabled">
 				<span>
 					<span aria-hidden="true">&laquo;</span>
@@ -8,21 +8,53 @@
 			</li>
 		{{else}}
 			<li>
-				<a href="#" aria-label="Previous">
+				<a href="#" aria-label="Previous" {{action "changePage" "previous"}}>
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</li>
 		{{/if}}
-		{{#each (range 1 model.pageCount) as |item|}}
+
+		{{#if model.showStartElipsis}}
+			<li>
+				<a href="#" {{action "changePage" "1"}}>
+					1
+				</a>
+			</li>
+			<li class="disabled">
+				<span>
+					<span aria-hidden="true">…</span>
+				</span>
+			</li>
+		{{/if}}
+
+		{{#each (range model.paginationStart model.paginationEnd) as |item|}}
 			{{#if (eq item model.page)}}
 				<li class="active">
 					<span>{{item}} <span class="sr-only">(current)</span></span>
 				</li>
 			{{else}}
-				<li><a href="#">{{item}}</a></li>
+				<li>
+					<a href="#" {{action "changePage" item}}>
+						{{item}}
+					</a>
+				</li>
 			{{/if}}
 		{{/each}}
-		{{#if (eq model.page model.pageCount)}}
+
+		{{#if model.showEndElipsis}}
+			<li class="disabled">
+				<span>
+					<span aria-hidden="true">…</span>
+				</span>
+			</li>
+			<li>
+				<a href="#" {{action "changePage" model.pageCount}}>
+					{{model.pageCount}}
+				</a>
+			</li>
+		{{/if}}
+
+		{{#if model.isLastPage}}
 			<li class="disabled">
 				<span>
 					<span aria-hidden="true">&raquo;</span>
@@ -30,7 +62,7 @@
 			</li>
 		{{else}}
 			<li>
-				<a href="#" aria-label="Next">
+				<a href="#" aria-label="Next" {{action "changePage" "next"}}>
 					<span aria-hidden="true">&raquo;</span>
 				</a>
 			</li>

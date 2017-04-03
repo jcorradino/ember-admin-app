@@ -1,27 +1,30 @@
-<div class="clearfix">
-<h2 class="pull-left no-spacing">Posts</h2>
-<div class="pull-right">
-	<button type="button" class="btn btn-primary">
-		<span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
-		Create New Post
-	</button>
-	<div class="dropdown pull-right margin-left">
-		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			Bulk Actions <span class="caret"></span>
+<h2>Posts</h2>
+<div class="clearfix margin-bottom">
+	{{partial "partials/pagination"}}
+	<div class="pull-right">
+		<button type="button" class="btn btn-primary">
+			<span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+			Create New Post
 		</button>
-		<ul class="dropdown-menu">
-		  <li><a href="#">Update Status</a></li>
-		  <li><a href="#">Modify Taxonomy</a></li>
-		  <li><a href="#">Delete</a></li>
-		</ul>
+		<div class="dropdown pull-right margin-left">
+			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Bulk Actions <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+			  <li><a href="#">Update Status</a></li>
+			  <li><a href="#">Modify Taxonomy</a></li>
+			  <li><a href="#">Delete</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
-</div>
-<hr />
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th></th>
+			<th>
+				{{input type="checkbox" name="isEmberized" id="select-all-checkbox" onClick="selectAll"}}
+				<label for="select-all-checkbox" class="sr-only">Select All</label>
+			</th>
 			<th>Post Title</th>
 			<th>Author</th>
 			<th>Status</th>
@@ -31,11 +34,11 @@
 	<tbody>
 		{{#each model.data as |post|}}
 			<tr>
-				{{partial "partials/post"}}
+				{{partial "partials/post-row"}}
 			</tr>
 		{{/each}}
 	</tbody>
 </table>
-<div class="margin-bottom margin-left">
+<div class="margin-bottom">
 	{{partial "partials/pagination"}}
 </div>

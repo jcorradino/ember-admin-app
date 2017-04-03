@@ -2,12 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Helper.extend({
 	compute(values) {
-		var start = values[0];
-		var count = values[1];
-
-		var ret = [];
-		for(var i = 0; i < count; i++) {
-			ret.push(i+start);
+		let start = values[0];
+		let end = values[1]+1;
+		let ret = [];
+		for(let i = start; i < end; i++) {
+			ret.push(i);
 		}
 		return ret;
 	}

@@ -53,6 +53,19 @@ nav {
 	}
 }
 
+table.table {
+	thead {
+		border-bottom: 1px solid white;
+		& > tr > th {
+			border-bottom: none;
+		}
+	}
+	
+	border: 1px solid #ddd;
+	border-collapse: separate;
+	border-radius: 5px;
+}
+
 @media (min-width: @screen-sm-min) {
 	nav {
 		.divider {

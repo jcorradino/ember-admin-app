@@ -13,11 +13,14 @@ normalizeArrayResponse() {
             meta: normalizedDocument.meta,
             data: []
         };
-        newPayload.meta.page = filter.page - 1;
+        newPayload.meta.page = Number(filter.page);
         newPayload.meta.itemsPerPage = filter.itemsPerPage;
         if (filter.page !== undefined && filter.itemsPerPage !== undefined) {
-            let startPosition = filter.itemsPerPage * filter.page;
+            let startPosition = filter.itemsPerPage * (filter.page - 1);
             let endPosition = startPosition + filter.itemsPerPage;
+
+            endPosition = (endPosition > newPayload.meta.total) ? newPayload.meta.total : endPosition;
+
             for (let i = startPosition; i < endPosition; i++) {
             newPayload.data.push(normalizedDocument.data[i]);
             }

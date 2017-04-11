@@ -24,13 +24,25 @@ export default Base.extend({
                 // contentType: 'application/json;charset=utf-8',
                 // dataType: 'json'
             }).then(function() {//response) {
-                Ember.run(function() {
-                    resolve({
-                        token: "abcdefg1234567",
-                        userName: "John Smith",
-                        permissionLevel: options.role
+                if (options.username === "AJaynes") {
+                    Ember.run(function() {
+                        resolve({
+                            token: "abcdefg1234567",
+                            userName: "Ardell Jaynes",
+                            permissionLevel: options.role,
+                            userId: options.userId
+                        });
                     });
-                });
+                } else {
+                    Ember.run(function() {
+                        resolve({
+                            token: "abcdefg1234567",
+                            userName: "John Smith",
+                            permissionLevel: options.role,
+                            userId: options.userId
+                        });
+                    });
+                }
             }, function() {
                 Ember.run(function() {
                     reject();

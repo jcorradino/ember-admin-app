@@ -13,6 +13,17 @@ normalizeArrayResponse() {
             meta: normalizedDocument.meta,
             data: []
         };
+        if (filter.author) {
+            var dataOutput = [];
+            normalizedDocument.data.forEach(function(record){
+                if (String(record.relationships.author.data.id) === String(filter.author)) {
+                    dataOutput.push(record);
+                }
+            });
+            normalizedDocument.data = dataOutput;
+            newPayload.meta.total = dataOutput.length;
+        }
+        
         newPayload.meta.page = Number(filter.page);
         newPayload.meta.itemsPerPage = filter.itemsPerPage;
         if (filter.page !== undefined && filter.itemsPerPage !== undefined) {

@@ -13,7 +13,12 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 
 	actions: {
 		testLogin(role) {
-            var credentials = {username:"jsmith", password:"12345", role:role};
+			var credentials;
+			if (String(role) === "1") {
+				credentials = {username:"AJaynes", password:"12345", role:role, userId: 2};
+			} else {
+				credentials = {username:"JSmith", password:"12345", role:role, userId: 6};
+			}
             this.get('session').authenticate('authenticator:custom', credentials).catch((message) => {
                 this.set('errorMessage', message);
             });

@@ -3,6 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 //import env from 'admin-app/config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+	session: Ember.inject.service('session'),
 	queryParams: {
 		page: {
 			replace: true,
@@ -11,14 +12,18 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
 	model(params) {
 		let page = params.page || 1;
-		let _ = this;
-		let model = {
-			data: this.get('store').query('post', {
+		var data = {
 				filter: {
 					page: page,
 					itemsPerPage: 20
 				}
-			}),
+			};
+		if (this.get('session.data.authenticated.permissionLevel') === "1") {
+			data.filter.author = this.get('session.data.authenticated.userId');
+		}
+		let _ = this;
+		let model = {
+			data: this.get('store').query('post', data),
 			page: page,
 			pageCount: 1,
 			itemsPerPage: 20

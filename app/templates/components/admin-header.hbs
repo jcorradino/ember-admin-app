@@ -25,6 +25,11 @@
               {{partial "partials/nav-item"}}
             {{/if}}
           {{/each}}
+          {{#if userName}}
+            {{#nav.item class="userName"}}
+              <a href="#">Welcome, {{userName}}</a>
+            {{/nav.item}}
+          {{/if}}
         {{/navbar.nav}}
     {{/navbar.content}}
   {{/if}}

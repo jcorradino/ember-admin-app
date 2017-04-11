@@ -12,6 +12,13 @@ export default Ember.Component.extend({
 			return Number(this.get('session.data.authenticated.permissionLevel'))+1;
 		}
 	}),
+	userName: Ember.computed("session.isAuthenticated", function(){
+		if (this.get('session.isAuthenticated') === false) {
+			return false;
+		} else {
+			return this.get('session.data.authenticated.userName');
+		}
+	}),
 	actions: {
         invalidateSession: function() {
             this.get('session').invalidate();
